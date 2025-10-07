@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  width: 100%;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.stack-area {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 300vh;
+  background: #fff;
+}
+
+.left {
+  display: flex;
+  position: sticky;
+  flex-direction: column;
+  flex-basis: 50%;
+  height: 100vh;
+  justify-content: center;
+  top: 0;
+}
+
+.right {
+  flex-basis: 50%;
+  height: 100vh;
+  background: #1a1c20;
+  display: flex;
+  position: sticky;
+  flex-direction: column;
+  top: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 3vw;
+}
+
+.left h1 {
+  font-family: "Arial Black", sans-serif;
+  font-size: 5rem;
+  font-weight: bolder;
+  padding-bottom: 0%;
+}
+
+.left p {
+  font-size: 18px;
+}
+
+.left .btn {
+  margin-top: 20px;
+  color: #fff;
+  background-color: #1a1c20;
+  border: none;
+  border-radius: 2rem;
+  padding: 20px 30px;
+  width: fit-content;
+}
+
+.card {
+  width: 350px;
+  height: 350px;
+  border-radius: 25px;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 35px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  top: calc(50% - 175px);
+  left: calc(50% - 175px);
+  transition: 0.5s ease-in-out;
+}
+
+.card:nth-child(1) {
+  background-color: #6ff5ff;
+}
+.card:nth-child(2) {
+  background-color: #ff746f;
+}
+.card:nth-child(3) {
+  background-color: #d16fff;
+}
+.card:nth-child(4) {
+  background-color: #6fff8c;
+}
+.card:nth-child(5) {
+  background-color: #ffee6f;
+}
+
+.sub {
+  font-family: Poppins;
+  font-size: 30px;
+  font-weight: 700;
+}
+.cardtxt {
+  font-family: Poppins;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 54px;
+}
+
+.away {
+  transform-origin: bottom left;
+}
