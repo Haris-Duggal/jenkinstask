@@ -4,28 +4,45 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clone the repository
+                echo 'Cloning repository...'
                 git branch: 'main', url: 'https://github.com/Haris-Duggal/jenkinstask.git'
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                echo 'No build needed for static HTML site.'
+                echo 'Building Docker image...'
+                script {
+                    docker.build('jenkinstask-image')
+                }
             }
         }
 
-        stage('Deploy') {
+        stage('Run Container') {
             steps {
-                echo 'Deploying static files...'
-                // Create output folder
-                bat 'mkdir -p C:\\JenkinsOutput\\jenkinstask'
+                echo 'Running Docker container...'
+                script {
+                    // Stop any running container with same name to avoid conflict
+                    try {
+                        sh 'docker stop jenkinstask-container || true'
+                        sh 'docker rm jenkinstask-container || true'
+                    } catch (err) {
+                        echo "No existing container found. Continuing..."
+                    }
 
-                // Copy all files
-                bat 'xcopy * C:\\JenkinsOutput\\jenkinstask /E /H /Y'
-
-                echo 'Website copied to C:\\JenkinsOutput\\jenkinstask'
+                    // Run new container
+                    sh 'docker run -d --name jenkinstask-container -p 3081:80 jenkinstask-image'
+                }
             }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Deployment complete! Visit http://localhost:3081 to view your site.'
+        }
+        failure {
+            echo '❌ Build failed. Check console output for details.'
         }
     }
 }
