@@ -24,14 +24,14 @@ pipeline {
                 script {
                     // Stop any running container with same name to avoid conflict
                     try {
-                        sh 'docker stop jenkinstask-container || true'
-                        sh 'docker rm jenkinstask-container || true'
+                        bat 'docker stop jenkinstask-container || exit 0'
+                        bat 'docker rm jenkinstask-container || exit 0'
                     } catch (err) {
                         echo "No existing container found. Continuing..."
                     }
 
                     // Run new container
-                    sh 'docker run -d --name jenkinstask-container -p 3081:80 jenkinstask-image'
+                    bat 'docker run -d --name jenkinstask-container -p 3081:80 jenkinstask-image'
                 }
             }
         }
